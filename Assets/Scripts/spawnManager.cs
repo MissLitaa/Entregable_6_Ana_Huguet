@@ -8,16 +8,15 @@ public class spawnManager : MonoBehaviour
     public GameObject[] spawnPrefabs;
 
     //Spawn preferences.
-    public float spawnDelay = 5f;
-    public float spawnRate = 3f;
-    public string[] spawnSide;
+    private float spawnDelay = 5f;
+    private float spawnRate = 3f;
+    private int spawnCount = 1;
+    private Vector3 spawnHeight;
+    private int rotationY = 180;
 
     //Spawn axis.
-    public float spawnLeft = -10f;
-    public float spawnRight = 10f;
-    public float spawnHeight;
-   
-
+    public float spawnPosition = -10f;
+    private float randomHeight;
     private float topLimit = 13.5f;
 
     // Start is called before the first frame update
@@ -29,16 +28,15 @@ public class spawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnHeight = Random.Range(0, topLimit);
-       
+        randomHeight = Random.Range(0, topLimit);
+        spawnHeight = new Vector3(randomHeight, 0, 0);
     }
     
     private void SpawnObstaclePrefab()
     {
-        /*
+        
         {
-            spawnCount = Random.Range(0, spawnPrefabs.Length);
-            Instantiate(spawnPrefabs[spawnCount]), new Vector3()
-        }*/
+            Instantiate(spawnPrefabs[spawnCount], spawnHeight, spawnPrefabs[spawnCount].transform.rotation *= Quaternion.Euler(0, rotationY, 0));
+        }
     }
 }
