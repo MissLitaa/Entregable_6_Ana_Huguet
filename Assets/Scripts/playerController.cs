@@ -10,6 +10,13 @@ public class playerController : MonoBehaviour
     private float topLimit = 13.5f;
     private float bottomLimit = 1f;
 
+    private AudioSource playerAS;
+
+    public AudioClip jumpBlip;
+    public AudioClip explosionClip;
+
+    public ParticleSystem bombExplode;
+
     private float gravityModifier = 0.75f;
     public bool isGameOver;
 
@@ -18,7 +25,7 @@ public class playerController : MonoBehaviour
     {
         playerRigidBody = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
-
+        playerAS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,9 +39,10 @@ public class playerController : MonoBehaviour
         }
 
         //Impulso
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
         {
             playerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerAS.PlayOneShot(jumpBlip, 1f);
         }
 
         //GAME OVER
@@ -42,6 +50,22 @@ public class playerController : MonoBehaviour
         {
             isGameOver = true;
             Time.timeScale = 0;
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision otherCollision)
+    {
+        if (!isGameOver)
+        {
+            if (otherCollision.gameObject.tag == "Bomb")
+            {
+                bombExplode.Play();
+                playerAS.PlayOneShot(explosionClip, 1f);
+                isGameOver = true;
+                bombExplode.Stop();
+            }
+
         }
 
     }
