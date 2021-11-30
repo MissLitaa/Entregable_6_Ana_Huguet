@@ -410,16 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c122e7ff0f189bb428d74c5e5b0eae61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefabs:
-  - {fileID: 11368019182273911, guid: 1db47c5ef25154fb1806822c25335042, type: 3}
-  spawnDelay: 0
-  spawnRate: 0
-  spawnSide:
-  - spawnLeft
-  - spawnRight
-  spawnLeft: 0
-  spawnRight: 0
-  spawnHeight: 0
+  spawnPrefabs: {fileID: 11368019182273911, guid: 1db47c5ef25154fb1806822c25335042, type: 3}
 --- !u!4 &991282791
 Transform:
   m_ObjectHideFlags: 0
@@ -467,7 +458,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1292757554
 GameObject:
   m_ObjectHideFlags: 0

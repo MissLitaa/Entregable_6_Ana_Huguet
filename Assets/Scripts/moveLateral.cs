@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class moveLateral : MonoBehaviour
 {
-    public float obstacleSpeed;
-    public float limitX = 14;
+    private float obstacleSpeed = 10;
+    private float limitX = 20f;
+    private float limitX2 = -40f;
     private playerController playerControllerScript;
 
 
@@ -23,9 +24,18 @@ public class moveLateral : MonoBehaviour
             transform.Translate(Vector3.right * obstacleSpeed * Time.deltaTime);
         }
 
-       if (transform.position.x > limitX)
+        if (transform.position.x > limitX)
         {
             Destroy(gameObject);
         }
+
+        if (transform.position.x < limitX2)
+        {
+            Destroy(gameObject);
+        }
+
+
+
+
     }
 }
